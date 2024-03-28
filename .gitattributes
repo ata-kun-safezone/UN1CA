@@ -12,6 +12,7 @@ target/a54x/patches/vendor/vendor/tee/** binary
 target/a71/patches/*/*/** binary
 target/a73xq/patches/wpss/vendor/firmware/** binary
 target/m52xq/patches/vendor/vendor/** binary
+target/r8q/patches/vendor/vendor/** binary
 *.apk binary
 *.apex binary
 *.bin binary

@@ -1,0 +1,57 @@
+echo "Fix Vibration HAL"
+rm -rf "$WORK_DIR/vendor/bin/hw/vendor.samsung.hardware.vibrator@2.2-service"
+rm -rf "$WORK_DIR/vendor/etc/init/vendor.samsung.hardware.vibrator@2.2-service.rc"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/bin/hw/vendor.samsung.hardware.vibrator-service" "$WORK_DIR/vendor/bin/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/init/hw/init.samsung.eif.rc" "$WORK_DIR/vendor/etc/init/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/init/vendor.samsung.hardware.vibrator-default.rc" "$WORK_DIR/vendor/etc/init"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/vintf/manifest.xml" "$WORK_DIR/vendor/etc/vintf"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/vintf/manifest/vendor.samsung.hardware.vibrator-default.xml" "$WORK_DIR/vendor/etc/vintf/manifest"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib/hw/vibrator.default.so" "$WORK_DIR/vendor/lib/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/hw/vibrator.default.so" "$WORK_DIR/vendor/lib64/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/vendor.samsung.hardware.vibrator-V3-ndk_platform.so" "$WORK_DIR/vendor/lib64"
+
+sed -i 's/vendor\\.samsung\\.hardware\\.vibrator@2\\.2-service/vendor\\.samsung\\.hardware\\.vibrator-service/g' "$WORK_DIR/configs/file_context-vendor"
+sed -i 's/vendor\\.samsung\\.hardware\\.vibrator-service\\.rc/vendor\\.samsung\\.hardware\\.vibrator-default\\.rc/g' "$WORK_DIR/configs/file_context-vendor"
+sed -i "s/vendor.samsung.hardware.vibrator@2.2-service/vendor.samsung.hardware.vibrator-service/g" "$WORK_DIR/configs/fs_config-vendor"
+sed -i "s/vendor.samsung.hardware.vibrator-service.rc/vendor.samsung.hardware.vibrator-default.rc/g" "$WORK_DIR/configs/fs_config-vendor"
+
+{
+    echo "/vendor/etc/init/vendor.samsung.hardware.vibrator-default.rc 0 0 644 capabilities=0x0"
+    echo "/vendor/etc/vintf/manifest/vendor.samsung.hardware.vibrator-default.xml 0 0 644 capabilities=0x0"
+    echo "/vendor/lib64/vendor.samsung.hardware.vibrator-V3-ndk_platform.so 0 0 644 capabilities=0x0"
+} >> "$WORK_DIR/configs/fs_config-vendor"
+
+{
+    echo "/vendor/etc/init/vendor\.samsung\.hardware\.vibrator-default\.rc u:object_r:vendor_configs_file:s0"
+    echo "/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.vibrator-default\.xml u:object_r:vendor_configs_file:s0"
+    echo "/vendor/lib64/vendor\.samsung\.hardware\.vibrator-V3-ndk_platform\.so u:object_r:vendor_file:s0"
+} >> "$WORK_DIR/configs/file_context-vendor"
+
+echo "Fix VoLTE"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/bin/hw/rild" "$WORK_DIR/vendor/bin/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/bin/hw/wpa_supplicant" "$WORK_DIR/vendor/bin/hw"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/init/init.vendor.rilcommon.rc" "$WORK_DIR/vendor/etc/init"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/mtu-conf.xml" "$WORK_DIR/vendor/etc"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/vintf/manifest/vendor.samsung.hardware.radio.exclude.qcom.xml" "$WORK_DIR/vendor/etc/vintf/manifest"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/vintf/manifest/vendor.samsung.hardware.radio_manifest_2_30.xml" "$WORK_DIR/vendor/etc/vintf/manifest"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/etc/vintf/manifest/vendor.samsung.hardware.sehradio_manifest_2_30.xml" "$WORK_DIR/vendor/etc/vintf/manifest"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib/libsec_semRil.so" "$WORK_DIR/vendor/lib"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib/libsecril-client.so" "$WORK_DIR/vendor/lib"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib/libsemnativecarrierfeature.so" "$WORK_DIR/vendor/lib"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/libengmode_client.so" "$WORK_DIR/vendor/lib64"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/libril_sem.so" "$WORK_DIR/vendor/lib64"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/libsec-ril.so" "$WORK_DIR/vendor/lib64"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/libsemnativecarrierfeature.so" "$WORK_DIR/vendor/lib64"
+cp "$SRC_DIR/target/r8q/patches/vendor/vendor/lib64/libSemTelephonyProps.so" "$WORK_DIR/vendor/lib64"
+
+{
+    echo "/vendor/etc/vintf/manifest/vendor.samsung.hardware.radio.exclude.qcom.xml 0 0 644 capabilities=0x0"
+    echo "/vendor/etc/vintf/manifest/vendor.samsung.hardware.radio_manifest_2_30.xml 0 0 644 capabilities=0x0"
+    echo "/vendor/etc/vintf/manifest/vendor.samsung.hardware.sehradio_manifest_2_30.xml 0 0 644 capabilities=0x0"
+} >> "$WORK_DIR/configs/fs_config-vendor"
+
+{
+    echo "/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.radio\.exclude\.qcom\.xml u:object_r:vendor_configs_file:s0"
+    echo "/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.radio_manifest_2_30\.xml u:object_r:vendor_configs_file:s0"
+    echo "/vendor/etc/vintf/manifest/vendor\.samsung\.hardware\.sehradio_manifest_2_30\.xml u:object_r:vendor_configs_file:s0"
+} >> "$WORK_DIR/configs/file_context-vendor"
