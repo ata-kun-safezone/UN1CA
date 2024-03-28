@@ -1126,8 +1126,8 @@ index f1fafbaa..2d7d380d 100644
  
      iget-object v0, p0, Lcom/android/server/accessibility/AccessibilityManagerService;->mContext:Landroid/content/Context;
  
--    const v3, 0x1040c38
-+    const v1, 0x1040c38
+-    const v3, 0x1040c43
++    const v1, 0x1040c43
  
 -    invoke-virtual {v0, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 +    invoke-virtual {v0, v1}, Landroid/content/Context;->getString(I)Ljava/lang/String;
@@ -1143,8 +1143,8 @@ index f1fafbaa..2d7d380d 100644
 -    iget-object v3, p0, Lcom/android/server/accessibility/AccessibilityManagerService;->mContext:Landroid/content/Context;
 +    iget-object v1, p0, Lcom/android/server/accessibility/AccessibilityManagerService;->mContext:Landroid/content/Context;
  
--    const v4, 0x1040c37
-+    const v2, 0x1040c37
+-    const v4, 0x1040c42
++    const v2, 0x1040c42
  
      filled-new-array {v0}, [Ljava/lang/Object;
  
@@ -1161,8 +1161,8 @@ index f1fafbaa..2d7d380d 100644
 -    iget-object v3, p0, Lcom/android/server/accessibility/AccessibilityManagerService;->mContext:Landroid/content/Context;
 +    iget-object v1, p0, Lcom/android/server/accessibility/AccessibilityManagerService;->mContext:Landroid/content/Context;
  
--    const v4, 0x1040c36
-+    const v2, 0x1040c36
+-    const v4, 0x1040c41
++    const v2, 0x1040c41
  
      filled-new-array {v0}, [Ljava/lang/Object;
  
@@ -2713,7 +2713,7 @@ index a2cbffa2..6243174f 100644
  
 -    iget-object v0, p0, Lcom/samsung/android/knox/custom/KnoxCustomManagerService;->mContext:Landroid/content/Context;
 -
--    const-string v2, "mDNIe"
+-    const-string/jumbo v2, "mDNIe"
 -
 -    invoke-virtual {v0, v2}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 -
@@ -2883,24 +2883,23 @@ index a2cbffa2..6243174f 100644
      iget-object p0, p0, Lcom/samsung/android/knox/custom/KnoxCustomManagerService;->mContext:Landroid/content/Context;
  
 -    sget-object v1, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
--
++    const-string v0, "mDNIe"
+ 
 -    invoke-virtual {p0, v0, v1}, Landroid/content/Context;->sendBroadcastAsUser(Landroid/content/Intent;Landroid/os/UserHandle;)V
 -
 -    goto :goto_4
-+    const-string v0, "mDNIe"
++    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
  
 -    :cond_9
 -    iget-boolean p0, p0, Lcom/samsung/android/knox/custom/KnoxCustomManagerService;->mKnoxCustomCurtainModeIsRunning:Z
-+    invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
++    move-result-object p0
  
 -    invoke-virtual {v0, p0}, Lcom/samsung/android/hardware/display/SemMdnieManager;->setmDNIeScreenCurtain(Z)Z
-+    move-result-object p0
  
 -    :goto_4
 -    return v3
 +    check-cast p0, Lcom/samsung/android/hardware/display/SemMdnieManager;
- 
--    nop
+
 +    const/4 p0, -0x6
  
 -    :array_0
