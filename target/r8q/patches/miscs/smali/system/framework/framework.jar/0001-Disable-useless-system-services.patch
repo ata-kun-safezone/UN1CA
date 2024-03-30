@@ -1,21 +1,21 @@
-From c5c34e4f39ddf944c6c54eca2b3a67b6175d3cfe Mon Sep 17 00:00:00 2001
-From: BlackMesa123 <giangrecosalvo9@gmail.com>
-Date: Wed, 31 Jan 2024 15:26:18 +0100
-Subject: [PATCH] Disable useless system services
+From 9fbd57a3c2d4fc2ecd053b469522d66cedcfa68a Mon Sep 17 00:00:00 2001
+From: ata-kaner <ata.kaner03@gmail.com>
+Date: Thu, 28 Mar 2024 23:47:41 +0300
+Subject: [PATCH] Disable useless services
 
 ---
- .../app/SystemServiceRegistry$174.smali       | 91 -------------------
- smali/android/app/SystemServiceRegistry.smali | 10 --
+ .../app/SystemServiceRegistry$175.smali       | 91 -------------------
+ .../android/app/SystemServiceRegistry.smali   | 10 --
  2 files changed, 101 deletions(-)
- delete mode 100644 smali/android/app/SystemServiceRegistry$174.smali
+ delete mode 100644 smali/android/app/SystemServiceRegistry$175.smali
 
-diff --git a/smali/android/app/SystemServiceRegistry$174.smali b/smali/android/app/SystemServiceRegistry$174.smali
+diff --git a/smali/android/app/SystemServiceRegistry$175.smali b/smali/android/app/SystemServiceRegistry$175.smali
 deleted file mode 100644
-index 619b5310..00000000
---- a/smali/android/app/SystemServiceRegistry$174.smali
+index 8ec617937..000000000
+--- a/smali/android/app/SystemServiceRegistry$175.smali
 +++ /dev/null
 @@ -1,91 +0,0 @@
--.class Landroid/app/SystemServiceRegistry$174;
+-.class Landroid/app/SystemServiceRegistry$175;
 -.super Landroid/app/SystemServiceRegistry$CachedServiceFetcher;
 -.source "SystemServiceRegistry.java"
 -
@@ -100,33 +100,33 @@ index 619b5310..00000000
 -        }
 -    .end annotation
 -
--    invoke-virtual {p0, p1}, Landroid/app/SystemServiceRegistry$174;->createService(Landroid/app/ContextImpl;)Lcom/samsung/android/mocca/SemMdContextManager;
+-    invoke-virtual {p0, p1}, Landroid/app/SystemServiceRegistry$175;->createService(Landroid/app/ContextImpl;)Lcom/samsung/android/mocca/SemMdContextManager;
 -
 -    move-result-object p1
 -
 -    return-object p1
 -.end method
 diff --git a/smali/android/app/SystemServiceRegistry.smali b/smali/android/app/SystemServiceRegistry.smali
-index 3f1a9eab..f975898e 100644
+index d4f345fdc..a2db0ffb3 100644
 --- a/smali/android/app/SystemServiceRegistry.smali
 +++ b/smali/android/app/SystemServiceRegistry.smali
-@@ -1958,16 +1958,6 @@
+@@ -1979,16 +1979,6 @@
  
      invoke-static {v5, v0, v4}, Landroid/app/SystemServiceRegistry;->registerService(Ljava/lang/String;Ljava/lang/Class;Landroid/app/SystemServiceRegistry$ServiceFetcher;)V
  
 -    const-class v0, Lcom/samsung/android/mocca/SemMdContextManager;
 -
--    new-instance v4, Landroid/app/SystemServiceRegistry$174;
+-    new-instance v4, Landroid/app/SystemServiceRegistry$175;
 -
--    invoke-direct {v4}, Landroid/app/SystemServiceRegistry$174;-><init>()V
+-    invoke-direct {v4}, Landroid/app/SystemServiceRegistry$175;-><init>()V
 -
 -    const-string/jumbo v5, "mocca"
 -
 -    invoke-static {v5, v0, v4}, Landroid/app/SystemServiceRegistry;->registerService(Ljava/lang/String;Ljava/lang/Class;Landroid/app/SystemServiceRegistry$ServiceFetcher;)V
 -
-     const/4 v0, 0x1
+     sget-boolean v0, Lcom/samsung/android/rune/CoreRune;->SYSFW_APP_PREL:Z
  
-     sput-boolean v0, Landroid/app/SystemServiceRegistry;->sInitializing:Z
+     if-eqz v0, :cond_8
 -- 
-2.43.0
+2.40.1
 
