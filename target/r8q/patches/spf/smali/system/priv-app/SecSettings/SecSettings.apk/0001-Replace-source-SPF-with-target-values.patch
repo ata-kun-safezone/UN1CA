@@ -1,23 +1,23 @@
-From 7c90bdfd8f50331b9bdc791348b5a1abc2c1303d Mon Sep 17 00:00:00 2001
-From: BlackMesa123 <giangrecosalvo9@gmail.com>
-Date: Tue, 9 Jan 2024 16:59:36 +0100
+From 9446525af2b3a0458e8abc79fb02db0777004816 Mon Sep 17 00:00:00 2001
+From: ata-kaner <ata.kaner03@gmail.com>
+Date: Fri, 29 Mar 2024 01:42:19 +0300
 Subject: [PATCH] Replace source SPF with target values
 
 ---
- .../android/wifitrackerlib/WifiEntry.smali    | 29 ++-----------------
+ .../android/wifitrackerlib/WifiEntry.smali    | 27 +-----
  .../mobileap/WifiApCloudBackupRestore.smali   | 89 -------------------
  .../WifiApSmartSwitchBackupRestore.smali      | 52 +----------
  .../mobileap/utils/WifiApFeatureUtils.smali   |  2 +-
  .../com/samsung/android/settings/Rune.smali   |  2 +-
- .../FingerprintSettingsUtils.smali            |  6 +- 
- .../settings/display/SecDisplayUtils.smali    |  8 ++---
- 7 files changed, 16 insertions(+), 217 deletions(-)
+ .../FingerprintSettingsUtils.smali            |  6 +-
+ .../settings/display/SecDisplayUtils.smali    |  8 +-
+ 7 files changed, 12 insertions(+), 174 deletions(-)
 
 diff --git a/smali/com/android/wifitrackerlib/WifiEntry.smali b/smali/com/android/wifitrackerlib/WifiEntry.smali
-index 7ad977c2..e483089a 100644
+index 328e315c5..2f9b50ac3 100644
 --- a/smali/com/android/wifitrackerlib/WifiEntry.smali
 +++ b/smali/com/android/wifitrackerlib/WifiEntry.smali
-@@ -2785,34 +2785,9 @@
+@@ -2793,32 +2793,9 @@
  .end method
  
  .method public semIsWifi6ENetwork()Z
@@ -29,15 +29,13 @@ index 7ad977c2..e483089a 100644
 -
 -    invoke-virtual {v0}, Landroid/net/wifi/WifiInfo;->getFrequency()I
 -
--    move-result v0
--
--    iget-object v1, p0, Lcom/android/wifitrackerlib/WifiEntry;->mWifiInfo:Landroid/net/wifi/WifiInfo;
--
--    invoke-virtual {v1}, Landroid/net/wifi/WifiInfo;->getWifiStandard()I
--
 -    move-result v1
 -
--    invoke-virtual {p0, v0, v1}, Lcom/android/wifitrackerlib/WifiEntry;->checkWifi6EStandard(II)Z
+-    invoke-virtual {v0}, Landroid/net/wifi/WifiInfo;->getWifiStandard()I
+-
+-    move-result v0
+-
+-    invoke-virtual {p0, v1, v0}, Lcom/android/wifitrackerlib/WifiEntry;->checkWifi6EStandard(II)Z
 -
 -    move-result p0
 -
@@ -55,7 +53,7 @@ index 7ad977c2..e483089a 100644
      return p0
  .end method
 diff --git a/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApCloudBackupRestore.smali b/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApCloudBackupRestore.smali
-index 0bf76d71..d6e0a304 100644
+index 7069c5c59..7657ee61b 100644
 --- a/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApCloudBackupRestore.smali
 +++ b/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApCloudBackupRestore.smali
 @@ -819,14 +819,6 @@
@@ -73,7 +71,7 @@ index 0bf76d71..d6e0a304 100644
      invoke-static/range {p1 .. p1}, Lcom/samsung/android/settings/wifi/mobileap/utils/WifiApFeatureUtils;->isMobileDataUsageSupported(Landroid/content/Context;)Z
  
      move-result v2
-@@ -923,42 +915,6 @@
+@@ -971,42 +963,6 @@
      return-object v0
  .end method
  
@@ -116,7 +114,7 @@ index 0bf76d71..d6e0a304 100644
  .method public getDescription(Landroid/content/Context;)Ljava/lang/String;
      .locals 0
  
-@@ -2438,19 +2394,6 @@
+@@ -2486,19 +2442,6 @@
  
      invoke-virtual {v3, v5}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
  
@@ -136,7 +134,7 @@ index 0bf76d71..d6e0a304 100644
      invoke-virtual {v8}, Landroid/net/wifi/SoftApConfiguration$Builder;->build()Landroid/net/wifi/SoftApConfiguration;
  
      move-result-object v5
-@@ -2700,38 +2643,6 @@
+@@ -2818,38 +2761,6 @@
      return-void
  .end method
  
@@ -176,7 +174,7 @@ index 0bf76d71..d6e0a304 100644
      .locals 2
  
 diff --git a/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApSmartSwitchBackupRestore.smali b/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApSmartSwitchBackupRestore.smali
-index 2df66d6e..c67c61f3 100644
+index 61634c80d..4713d8178 100644
 --- a/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApSmartSwitchBackupRestore.smali
 +++ b/smali_classes3/com/samsung/android/settings/wifi/mobileap/WifiApSmartSwitchBackupRestore.smali
 @@ -3331,25 +3331,9 @@
@@ -206,7 +204,7 @@ index 2df66d6e..c67c61f3 100644
  
      goto/16 :goto_8
  
-@@ -6364,40 +6348,6 @@
+@@ -6500,40 +6484,6 @@
  
      invoke-virtual {v12, v10}, Ljava/io/FileWriter;->write(Ljava/lang/String;)V
  
@@ -248,10 +246,10 @@ index 2df66d6e..c67c61f3 100644
      :try_end_6
      .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_2
 diff --git a/smali_classes3/com/samsung/android/settings/wifi/mobileap/utils/WifiApFeatureUtils.smali b/smali_classes3/com/samsung/android/settings/wifi/mobileap/utils/WifiApFeatureUtils.smali
-index 10b11d9d..43d98c03 100644
+index 4fb680936..d6528bb10 100644
 --- a/smali_classes3/com/samsung/android/settings/wifi/mobileap/utils/WifiApFeatureUtils.smali
 +++ b/smali_classes3/com/samsung/android/settings/wifi/mobileap/utils/WifiApFeatureUtils.smali
-@@ -447,7 +447,7 @@
+@@ -521,7 +521,7 @@
  .method public static isWifi6StandardSupported(Landroid/content/Context;)Z
      .locals 0
  
@@ -261,10 +259,10 @@ index 10b11d9d..43d98c03 100644
      return p0
  .end method
 diff --git a/smali_classes4/com/samsung/android/settings/Rune.smali b/smali_classes4/com/samsung/android/settings/Rune.smali
-index afcca13f..3122c61a 100644
+index 014a2b011..68f5d6d3a 100644
 --- a/smali_classes4/com/samsung/android/settings/Rune.smali
 +++ b/smali_classes4/com/samsung/android/settings/Rune.smali
-@@ -247,7 +247,7 @@
+@@ -267,7 +267,7 @@
  
      sput-object v0, Lcom/samsung/android/settings/Rune;->mSupportDisplayCut:Ljava/lang/Boolean;
  
@@ -274,7 +272,7 @@ index afcca13f..3122c61a 100644
      invoke-static {v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
  
 diff --git a/smali_classes4/com/samsung/android/settings/biometrics/fingerprint/FingerprintSettingsUtils.smali b/smali_classes4/com/samsung/android/settings/biometrics/fingerprint/FingerprintSettingsUtils.smali
-index 27e7f97f..0cd1a558 100644
+index 90f8e223a..072640923 100644
 --- a/smali_classes4/com/samsung/android/settings/biometrics/fingerprint/FingerprintSettingsUtils.smali
 +++ b/smali_classes4/com/samsung/android/settings/biometrics/fingerprint/FingerprintSettingsUtils.smali
 @@ -848,7 +848,7 @@
@@ -305,10 +303,10 @@ index 27e7f97f..0cd1a558 100644
      return v0
  .end method
 diff --git a/smali_classes4/com/samsung/android/settings/display/SecDisplayUtils.smali b/smali_classes4/com/samsung/android/settings/display/SecDisplayUtils.smali
-index 20e66c57..f9fb3cb1 100644
+index 6d5035858..22d29efdf 100644
 --- a/smali_classes4/com/samsung/android/settings/display/SecDisplayUtils.smali
 +++ b/smali_classes4/com/samsung/android/settings/display/SecDisplayUtils.smali
-@@ -2712,7 +2712,7 @@
+@@ -2668,7 +2668,7 @@
  
      if-eq p1, v0, :cond_0
  
@@ -317,7 +315,7 @@ index 20e66c57..f9fb3cb1 100644
  
      invoke-static {p0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
  
-@@ -2754,7 +2754,7 @@
+@@ -2710,7 +2710,7 @@
  
      if-eq p1, v0, :cond_0
  
@@ -326,7 +324,7 @@ index 20e66c57..f9fb3cb1 100644
  
      invoke-virtual {p0, v1}, Ljava/lang/String;->split(Ljava/lang/String;)[Ljava/lang/String;
  
-@@ -2897,7 +2897,7 @@
+@@ -2853,7 +2853,7 @@
  .method public static getMinSupportedRefreshRate()I
      .locals 2
  
@@ -335,7 +333,7 @@ index 20e66c57..f9fb3cb1 100644
  
      invoke-static {v0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
  
-@@ -6896,7 +6896,7 @@
+@@ -6895,7 +6895,7 @@
  
      if-eq p1, v3, :cond_1
  
@@ -345,5 +343,5 @@ index 20e66c57..f9fb3cb1 100644
      invoke-static {p0}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
  
 -- 
-2.34.1
+2.40.1
 
