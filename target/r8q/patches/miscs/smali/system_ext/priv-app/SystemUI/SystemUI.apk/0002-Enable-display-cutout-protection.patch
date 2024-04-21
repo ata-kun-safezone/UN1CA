@@ -15,6 +15,7 @@ index 1fef410b..fedcd766 100644
      <bool name="config_enableBouncerUserSwitcher">false</bool>
      <bool name="config_enableCoverScreenPrivacyDot">false</bool>
      <bool name="config_enableCoverScreenRoundedCorner">false</bool>
+     <bool name="config_enableCustomeSimTrayPopupText">false</bool>
 -    <bool name="config_enableDisplayCutoutProtection">false</bool>
 +    <bool name="config_enableDisplayCutoutProtection">true</bool>
      <bool name="config_enableFullscreenUserSwitcher">false</bool>
