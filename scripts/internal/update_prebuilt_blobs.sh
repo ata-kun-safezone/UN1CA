@@ -130,6 +130,18 @@ case "$1" in
         BLOBS="$(find "$SRC_DIR/target/m52xq/patches/vendor/vendor" -type f \
             -not -path "*/firmware/*" ! -name "*wifi_firmware.rc" | sed "s.$SRC_DIR/target/m52xq/patches/vendor/..")"
         ;;
+    "target/r8q/patches/stock_blobs")
+        MODULE="$1"
+        FW="SM-G990B/EUX/353718681234563"
+        BLOBS="$(find "$SRC_DIR/target/r8q/patches/stock_blobs/system" -type f -printf "\n%p" \
+            | sed "s.$SRC_DIR/target/r8q/patches/stock_blobs.system.")"
+        ;;
+    "target/r8q/patches/vendor")
+        MODULE="$1"
+        FW="SM-G990B/EUX/353718681234563"
+        BLOBS="$(find "$SRC_DIR/target/r8q/patches/vendor/vendor" -type f \
+            ! -name "manifest.xml" | sed "s.$SRC_DIR/target/r8q/patches/vendor/..")"
+        ;;
     *)
         echo "Unsupported path: $1"
         exit 1
