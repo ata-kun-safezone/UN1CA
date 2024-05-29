@@ -168,10 +168,7 @@ APKTOOL=true
 EROFS_UTILS=true
 IMG2SDAT=true
 SAMFIRM=true
-
-if [[ "$*" == *"--compile-signapk"* ]]; then
 SIGNAPK=true
-fi
 
 ANDROID_TOOLS_EXEC=(
     "adb" "append2simg" "avbtool" "e2fsdroid"
@@ -198,24 +195,16 @@ SAMFIRM_EXEC=(
     "samfirm"
 )
 CHECK_TOOLS "${SAMFIRM_EXEC[@]}" && SAMFIRM=false
-
-if [[ "$*" == *"--compile-signapk"* ]]; then
 SIGNAPK_EXEC=(
     "signapk" "signapk.jar"
 )
 CHECK_TOOLS "${SIGNAPK_EXEC[@]}" && SIGNAPK=false
-fi
-
 
 $ANDROID_TOOLS && BUILD_ANDROID_TOOLS
 $APKTOOL && BUILD_APKTOOL
 $EROFS_UTILS && BUILD_EROFS_UTILS
 $IMG2SDAT && BUILD_IMG2SDAT
 $SAMFIRM && BUILD_SAMFIRM
-if [[ "$*" == *"--compile-signapk"* ]]; then
 $SIGNAPK && BUILD_SIGNAPK
-else
-echo "- Signapk building is disabled"
-fi
 
 exit 0
