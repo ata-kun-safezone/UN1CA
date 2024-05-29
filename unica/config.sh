@@ -24,19 +24,19 @@ ROM_CODENAME="Diamond"
 case "$TARGET_SINGLE_SYSTEM_IMAGE" in
     # Qualcomm
     "qssi")
-        # Galaxy S23 (One UI 6.0)
-        SOURCE_FIRMWARE="SM-S911B/INS/352404911234563"
+        # Galaxy S21 FE (One UI 6.1)
+        SOURCE_FIRMWARE="SM-G990B/EUX/350370851234560"
         SOURCE_EXTRA_FIRMWARES=()
         SOURCE_API_LEVEL=34
-        SOURCE_VNDK_VERSION=33
+        SOURCE_VNDK_VERSION=30
         SOURCE_HAS_SYSTEM_EXT=true
         # SEC Product Feature
         SOURCE_HAS_KNOX_DUALDAR=true
-        SOURCE_HAS_KNOX_SDP=false
-        SOURCE_HAS_HW_MDNIE=true
-        SOURCE_HAS_MASS_CAMERA_APP=false
-        SOURCE_HAS_OPTICAL_FP_SENSOR=false
-        SOURCE_IS_ESIM_SUPPORTED=true
+        SOURCE_HAS_KNOX_SDP=true
+        SOURCE_HAS_HW_MDNIE=false
+        SOURCE_HAS_MASS_CAMERA_APP=true
+        SOURCE_HAS_OPTICAL_FP_SENSOR=true
+        SOURCE_IS_ESIM_SUPPORTED=false
         ;;
     # Exynos
     "essi")
