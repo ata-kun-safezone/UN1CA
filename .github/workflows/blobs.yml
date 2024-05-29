@@ -39,6 +39,10 @@ jobs:
             path: "unica/packages/vndk/32"
           - module: "VNDK 33 apex"
             path: "unica/packages/vndk/33"
+          - module: "(r8q) OS proprietary blobs"
+            path: "target/r8q/patches/stock_blobs"
+          - module: "(r8q) /vendor proprietary blobs"
+            path: "target/r8q/patches/vendor"
 
     steps:
       - name: Checkout repo

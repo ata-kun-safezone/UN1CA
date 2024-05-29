@@ -1,0 +1,41 @@
+# Copyright (C) 2018 The Android Open Source Project
+#
+# External Interface device configuration common for all android devices
+#
+
+on init
+# MUIC
+    chown system radio /sys/class/sec/switch/otg_test
+    chown system radio /sys/class/sec/switch/uart_sel
+    chown system radio /sys/class/sec/switch/usb_sel
+    chown system radio /sys/class/sec/switch/apo_factory
+    chown system radio /sys/class/sec/switch/afc_disable
+    chown system radio /sys/class/sec/switch/afc_set_voltage
+    chown system radio /sys/class/sec/switch/vbus_value
+    chown system radio /sys/class/sec/switch/vbus_value_pd
+    chown system radio /sys/class/sec/switch/vbus_rawdata
+    chown system radio /sys/class/sec/switch/show_reg
+    chown system radio /sys/class/sec/switch/hiccup
+
+# UVDM permission
+    chown system usb /dev/ccic_misc
+    chmod 0664 /dev/ccic_misc
+
+# LPM mode for ccic
+    chown system radio /sys/class/sec/ccic/lpm_mode
+    chmod 0664 /sys/class/sec/ccic/lpm_mode
+
+# CCIC control option
+    chown system radio /sys/class/sec/ccic/ccic_control_option
+    chown system radio /sys/class/sec/ccic/fw_update
+    chmod 0220 /sys/class/sec/ccic/fw_update
+    chown system radio /sys/class/sec/ccic/control_gpio
+    chmod 0660 /sys/class/sec/ccic/control_gpio
+    chown system usb /sys/class/sec/ccic/dex_fan_uvdm
+    chmod 0220 /sys/class/sec/ccic/dex_fan_uvdm
+    chown system radio /sys/class/sec/ccic/vsafe0v_status
+    chmod 0444 /sys/class/sec/ccic/vsafe0v_status
+    chown system radio /sys/class/sec/ccic/ovp_ic_shutdown
+    chmod 0220 /sys/class/sec/ccic/ovp_ic_shutdown
+    chown system system /sys/class/sec/ccic/hmd_power
+    chmod 0220 /sys/class/sec/ccic/hmd_power

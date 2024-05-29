@@ -7,6 +7,7 @@ unica/packages/fod/*/system/** binary
 unica/packages/knox/*/*/system/** binary
 unica/packages/vndk/30/** binary
 unica/patches/mods/system/bin/rezetprop binary
+target/r8q/patches/vendor/vendor/** binary
 *.apk binary
 *.apex binary
 *.bin binary
