@@ -1,4 +1,8 @@
-out/
+out/fw
+out/odin
+out/tools
+out/work_dir
+out/config.sh
 
 # Cert
 unica/security/unica_platform.x509.pem
