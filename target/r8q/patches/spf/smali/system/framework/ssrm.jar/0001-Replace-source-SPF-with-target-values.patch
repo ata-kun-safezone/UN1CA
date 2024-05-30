@@ -1,37 +1,37 @@
-From c6cd00d423a31d849ae0f5450aff027524c25e93 Mon Sep 17 00:00:00 2001
-From: BlackMesa123 <giangrecosalvo9@gmail.com>
-Date: Tue, 9 Jan 2024 16:10:43 +0100
-Subject: [PATCH] Replace source SPF with target values
+From f44ef9114a00c4a27bc2a7b94ce8497753f7636f Mon Sep 17 00:00:00 2001
+From: ata-kaner <ata.kaner03@gmail.com>
+Date: Thu, 30 May 2024 08:40:58 +0300
+Subject: [PATCH 4/4] SSRM-SPF
 
 ---
- smali/com/android/server/ssrm/Feature.smali    | 4 ++--
- smali/com/android/server/ssrm/PreMonitor.smali | 2 +-
+ .../ssrm.jar/smali/com/android/server/ssrm/Feature.smali      | 4 ++--
+ .../ssrm.jar/smali/com/android/server/ssrm/PreMonitor.smali   | 2 +-
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/smali/com/android/server/ssrm/Feature.smali b/smali/com/android/server/ssrm/Feature.smali
-index 4428f87..73e8f44 100644
+index 1fa29ab98..e30f44e85 100644
 --- a/smali/com/android/server/ssrm/Feature.smali
 +++ b/smali/com/android/server/ssrm/Feature.smali
-@@ -324,7 +324,7 @@
+@@ -157,7 +157,7 @@
+ 
+     sput-object v2, Lcom/android/server/ssrm/Feature;->DVFS_FILENAME:Ljava/lang/String;
+ 
+-    const-string v2, "dvfs_policy_default,"
++    const-string v2, "dvfs_policy_sdm8250_xx,"
+ 
+     sput-object v2, Lcom/android/server/ssrm/Feature;->DVFS_FILENAME_DEFAULT:Ljava/lang/String;
+ 
+@@ -336,7 +336,7 @@
  
      if-eqz v6, :cond_1
  
--    const-string v6, "siop_dm1q_sm8550"
+-    const-string v6, "siop_r9q_sm8350"
 +    const-string v6, "siop_r8q_sm8250"
  
      sput-object v6, Lcom/android/server/ssrm/Feature;->SSRM_FILENAME:Ljava/lang/String;
  
-@@ -354,7 +354,7 @@
-     :goto_1
-     sput-boolean v0, Lcom/android/server/ssrm/Feature;->DISABLE_HEAVYUSER:Z
- 
--    const-string v0, "dvfs_policy_default"
-+    const-string v0, "dvfs_policy_sdm8250_xx"
- 
-     sput-object v0, Lcom/android/server/ssrm/Feature;->DVFS_FILENAME:Ljava/lang/String;
- 
 diff --git a/smali/com/android/server/ssrm/PreMonitor.smali b/smali/com/android/server/ssrm/PreMonitor.smali
-index 273cc52..6fe2f71 100644
+index 2d91b733a..3dca7b44e 100644
 --- a/smali/com/android/server/ssrm/PreMonitor.smali
 +++ b/smali/com/android/server/ssrm/PreMonitor.smali
 @@ -571,7 +571,7 @@
@@ -44,5 +44,5 @@ index 273cc52..6fe2f71 100644
      invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
  
 -- 
-2.34.1
+2.40.1
 
