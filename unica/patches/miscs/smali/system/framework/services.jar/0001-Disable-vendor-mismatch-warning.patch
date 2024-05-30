@@ -1,9 +1,8 @@
-From ec14ff5a505422acc8ea62cb1a6c7a5a96d15fe0 Mon Sep 17 00:00:00 2001
-From: Andy CrossGate Yan <GeForce8800Ultra@gmail.com>
-Date: Thu, 5 Apr 2018 10:01:19 +0800
-Subject: [PATCH] Disable vendor mismatch warning
+From ac7ee7c580508f28fbf22377c6760df95b2ecbfb Mon Sep 17 00:00:00 2001
+From: ata-kaner <ata.kaner03@gmail.com>
+Date: Wed, 29 May 2024 22:51:51 +0300
+Subject: [PATCH] vendor-mismatch
 
-Change-Id: Ieb8fe91e2f02462f074312ed0f4885d183e9780b
 ---
  ...calService$$ExternalSyntheticLambda5.smali |  34 ------
  ...ivityTaskManagerService$LocalService.smali | 113 +-----------------
@@ -51,7 +50,7 @@ index 10403942..00000000
 -    return-void
 -.end method
 diff --git a/smali_classes3/com/android/server/wm/ActivityTaskManagerService$LocalService.smali b/smali_classes3/com/android/server/wm/ActivityTaskManagerService$LocalService.smali
-index 6dd2b278..aef6a03a 100644
+index a650c15a..108820c9 100644
 --- a/smali_classes3/com/android/server/wm/ActivityTaskManagerService$LocalService.smali
 +++ b/smali_classes3/com/android/server/wm/ActivityTaskManagerService$LocalService.smali
 @@ -42,14 +42,6 @@
@@ -126,7 +125,7 @@ index 6dd2b278..aef6a03a 100644
 -
 -    move-result-object v1
 -
--    const v2, 0x1040e0c
+-    const v2, 0x1040e08
 -
 -    invoke-virtual {v1, v2}, Landroid/content/Context;->getText(I)Ljava/lang/CharSequence;
 -
@@ -169,7 +168,7 @@ index 6dd2b278..aef6a03a 100644
  .method private synthetic lambda$showSystemReadyErrorDialogsIfNeeded$2()V
      .locals 3
  
-@@ -6788,20 +6687,10 @@
+@@ -6776,20 +6675,10 @@
  
      const-string v1, "ActivityTaskManager"
  
@@ -192,5 +191,5 @@ index 6dd2b278..aef6a03a 100644
      monitor-exit v0
      :try_end_1
 -- 
-2.43.0
+2.40.1
 
