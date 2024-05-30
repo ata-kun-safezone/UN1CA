@@ -5,11 +5,10 @@
         vendor/samsung/interfaces/snap/aidl/secure_device_framework_compatibility_matrix.xml
         vendor/samsung/interfaces/nfc/2.0/device_framework_compatibility_matrix.xml
         vendor/samsung/interfaces/media/converter/aidl/framework_compatibility_matrix.xml
-        vendor/samsung/interfaces/media/mpp/aidl/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/security/engmode/1.0/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/hyper/aidl/framework_compatibility_matrix.xml
-        vendor/samsung/interfaces/bluetooth/aidl/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/wifi/aidl/framework_compatibility_matrix.xml
+        vendor/samsung/interfaces/wifi/nan/aidl/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/authfw/1.0/vendor.samsung.hardware.authfw@1.0-matrix.xml
         vendor/samsung/interfaces/authfw/aidl/vendor.samsung.hardware.authfw-matrix.xml
         vendor/samsung/interfaces/biometrics/face/3.0/face_compatibility_matrix.xml
@@ -17,6 +16,7 @@
         vendor/samsung/interfaces/sysinput/aidl/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/tlc/kg/1.1/vendor.samsung.hardware.tlc.kg@1.1-matrix.xml
         vendor/samsung/system/security/drk/drk_hidl_framework_compatibility_matrix.xml
+        vendor/samsung/system/security/drk/drk_aidl_framework_compatibility_matrix.xml
         vendor/samsung/interfaces/tlc/payment/1.0/tlc_payment_compatibility_matrix.xml
         vendor/samsung/interfaces/tlc/blockchain/1.0/tlc_blockchain_compatibility_matrix.xml
         vendor/samsung/interfaces/tlc/iccc/1.0/vendor.samsung.hardware.tlc.iccc@1.0-matrix.xml
@@ -35,6 +35,7 @@
         vendor/samsung/interfaces/security/vaultkeeper/2.0/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/security/fkeymaster/aidl/fkeymaster_framework_compatibility_matrix.xml
         vendor/samsung/interfaces/security/ssu/aidl/framework_compatibility_matrix.xml
+        vendor/samsung/frameworks/av/media/vendor/mpp/aidl/framework_compatibility_matrix.xml
         vendor/samsung/interfaces/snap/aidl/secure_device_framework_compatibility_matrix.xml
         vendor/samsung/interfaces/nfc/2.0/device_framework_compatibility_matrix.xml
         vendor/samsung/hardware/ril/URC/fcm/radio_framework_compatibility_matrix.xml
@@ -61,6 +62,13 @@
         <interface>
             <name>IBiometricsFace</name>
             <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>android.hardware.camera.provider</name>
+        <interface>
+            <name>ICameraProvider</name>
+            <instance>internal/0</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -172,13 +180,6 @@
         <interface>
             <name>ISupplicant</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="aidl" optional="true">
-        <name>android.samsung.hardware.camera.provider</name>
-        <interface>
-            <name>ICameraProvider</name>
-            <instance>internal/0</instance>
         </interface>
     </hal>
     <hal format="aidl" optional="true">
@@ -556,6 +557,7 @@
         <version>2.0-1</version>
         <version>3.0</version>
         <version>3.1</version>
+        <version>3.2</version>
         <interface>
             <name>IQtiComposer</name>
             <instance>default</instance>
@@ -570,7 +572,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.hardware.display.config</name>
-        <version>1-8</version>
+        <version>1-11</version>
         <interface>
             <name>IDisplayConfig</name>
             <instance>default</instance>
@@ -694,6 +696,14 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.improvetouch.touchcompanion</name>
+        <version>1.0</version>
+        <interface>
+            <name>ITouchCompanion</name>
+            <instance>TouchCompanionService</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.iop</name>
         <version>2.0</version>
         <interface>
@@ -812,6 +822,29 @@
         <name>vendor.qti.hardware.qspa</name>
         <interface>
             <name>IQspa</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.qteeconnector</name>
+        <version>1.0</version>
+        <interface>
+            <name>IAppConnector</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IGPAppConnector</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.qteeconnector</name>
+        <interface>
+            <name>IAppConnector</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>IGPAppConnector</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -1040,6 +1073,14 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.seccam</name>
+        <version>1.0</version>
+        <interface>
+            <name>ISecCam</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.sensorscalibrate</name>
         <version>1.0</version>
         <interface>
@@ -1082,6 +1123,17 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.systemhelperaidl</name>
+        <interface>
+            <name>ISystemEvent</name>
+            <instance>default</instance>
+        </interface>
+        <interface>
+            <name>ISystemResource</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.qti.hardware.trustedui</name>
         <version>1.0-2</version>
@@ -1101,14 +1153,10 @@
         <interface>
             <name>ITrustedInput</name>
             <instance>default</instance>
-            <instance>qtee-tz</instance>
-            <instance>qtee-vm</instance>
         </interface>
         <interface>
             <name>ITrustedUI</name>
             <instance>default</instance>
-            <instance>qtee-tz</instance>
-            <instance>qtee-vm</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -1157,6 +1205,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.qti.ims.datachannelservice</name>
+        <version>1-2</version>
         <interface>
             <name>IDataChannelService</name>
             <instance>default</instance>
@@ -1216,6 +1265,13 @@
         <interface>
             <name>IQccvndhal</name>
             <instance>qccvndhal</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.qepi</name>
+        <interface>
+            <name>IQEPI</name>
+            <instance>qepi</instance>
         </interface>
     </hal>
     <hal format="hidl" optional="true">
@@ -1303,13 +1359,6 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl" optional="true">
-        <name>vendor.samsung.hardware.bluetooth</name>
-        <interface>
-            <name>ISehBluetooth</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.samsung.hardware.gnss</name>
         <version>2.0</version>
@@ -1351,6 +1400,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.samsung.hardware.media.mpp</name>
+        <version>2</version>
         <interface>
             <name>ISehMppStore</name>
             <instance>default</instance>
@@ -1468,6 +1518,13 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.samsung.hardware.security.drk</name>
+        <interface>
+            <name>ISehDrk</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <hal format="hidl" optional="true">
         <name>vendor.samsung.hardware.security.engmode</name>
         <version>1.0</version>
@@ -1521,6 +1578,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.samsung.hardware.snap</name>
+        <version>2</version>
         <interface>
             <name>ISehSnap</name>
             <instance>default</instance>
@@ -1529,6 +1587,7 @@
     </hal>
     <hal format="aidl" optional="true">
         <name>vendor.samsung.hardware.snap</name>
+        <version>2</version>
         <interface>
             <name>ISehSnap</name>
             <instance>default</instance>
@@ -1614,6 +1673,13 @@
         <name>vendor.samsung.hardware.wifi</name>
         <interface>
             <name>ISehWifi</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.samsung.hardware.wifi.nan</name>
+        <interface>
+            <name>IWifiVendorNan</name>
             <instance>default</instance>
         </interface>
     </hal>
