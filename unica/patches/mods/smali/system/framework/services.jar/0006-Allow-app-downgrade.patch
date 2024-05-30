@@ -8,10 +8,10 @@ Subject: [PATCH] Allow app downgrade
  1 file changed, 16 insertions(+)
 
 diff --git a/smali_classes3/com/android/server/pm/InstallPackageHelper.smali b/smali_classes3/com/android/server/pm/InstallPackageHelper.smali
-index 609f79ad..1ec0cdea 100644
+index f2d74c5f0..391114321 100644
 --- a/smali_classes3/com/android/server/pm/InstallPackageHelper.smali
 +++ b/smali_classes3/com/android/server/pm/InstallPackageHelper.smali
-@@ -25882,6 +25882,22 @@
+@@ -26136,6 +26136,22 @@
  
      if-nez p2, :cond_5
  
@@ -35,5 +35,5 @@ index 609f79ad..1ec0cdea 100644
      invoke-static {v2, p1}, Lcom/android/server/pm/PackageManagerServiceUtils;->checkDowngrade(Lcom/android/server/pm/pkg/AndroidPackage;Landroid/content/pm/PackageInfoLite;)V
      :try_end_1
 -- 
-2.34.1
+2.40.1
 

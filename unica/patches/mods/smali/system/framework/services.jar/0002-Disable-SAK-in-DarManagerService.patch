@@ -8,10 +8,10 @@ Subject: [PATCH] Disable SAK in DarManagerService
  1 file changed, 4 insertions(+), 125 deletions(-)
 
 diff --git a/smali_classes2/com/android/server/knox/dar/DarManagerService.smali b/smali_classes2/com/android/server/knox/dar/DarManagerService.smali
-index d3f21189..97648b71 100644
+index 216c49c60..0b1f96d33 100644
 --- a/smali_classes2/com/android/server/knox/dar/DarManagerService.smali
 +++ b/smali_classes2/com/android/server/knox/dar/DarManagerService.smali
-@@ -481,50 +481,11 @@
+@@ -489,50 +489,11 @@
  .end method
  
  .method public final checkDeviceIntegrity([Ljava/security/cert/Certificate;)Z
@@ -63,7 +63,7 @@ index d3f21189..97648b71 100644
  .end method
  
  .method public final checkSystemPermission()V
-@@ -2320,93 +2281,11 @@
+@@ -2357,93 +2318,11 @@
  .end method
  
  .method public isKnoxKeyInstallable()Z
@@ -161,5 +161,5 @@ index d3f21189..97648b71 100644
  
  .method public isLicensed()I
 -- 
-2.43.0
+2.40.1
 

@@ -4,30 +4,30 @@ Date: Wed, 27 Dec 2023 13:17:48 +0100
 Subject: [PATCH] Add UN1CA Settings
 
 ---
- AndroidManifest.xml                           |    8 +
- .../res/drawable/sec_ic_settings_unica.xml    |    9 +
- .../unica_settings_logo_layout.xml            |    6 +
- .../res/layout/unica_settings_logo_layout.xml |    6 +
- res/values/public.xml                         |   19 +
- res/values/strings.xml                        |   14 +
- .../res/xml/sec_top_level_settings.xml        |    1 +
- res/xml/unica_settings.xml                    |   14 +
- .../com/android/settings/R$string.smali       |   28 +
- .../com/android/settings/R$xml.smali          |    2 +
- .../Settings$UnicaSettingsActivity.smali      |   13 +
- .../unica/UnicaSettingsFragment.smali         |   92 +
- .../UnicaSettingsPreferenceController.smali   |  223 +
- .../PIFUtils$$ExternalSyntheticLambda0.smali  |   46 +
- .../PIFUtils$$ExternalSyntheticLambda1.smali  |   34 +
- .../PIFUtils$$ExternalSyntheticLambda2.smali  |   46 +
- .../io/mesalabs/unica/pif/PIFUtils.smali      |  408 ++
- .../AppDowngradePreferenceController.smali    |  183 +
- .../DeviceNamePreferenceController.smali      |  211 +
- .../GamesPropsPreferenceController.smali      |  167 +
- .../PIFVersionPreferenceController.smali      |  226 +
- .../ROMVersionPreferenceController.smali      |  238 +
- ...SecureScreenshotPreferenceController.smali |  183 +
- 23 files changed, 2131 insertions(+)
+ .../SecSettings.apk/AndroidManifest.xml       |   8 +
+ .../res/drawable/sec_ic_settings_unica.xml    |   9 +
+ .../unica_settings_logo_layout.xml            |   6 +
+ .../res/layout/unica_settings_logo_layout.xml |   6 +
+ .../SecSettings.apk/res/values/public.xml     |  19 +
+ .../SecSettings.apk/res/values/strings.xml    |  14 +
+ .../res/xml/sec_top_level_settings.xml        |   1 +
+ .../res/xml/unica_settings.xml                |  14 +
+ .../com/android/settings/R$string.smali       |  28 ++
+ .../com/android/settings/R$xml.smali          |   2 +
+ .../Settings$UnicaSettingsActivity.smali      |  13 +
+ .../unica/UnicaSettingsFragment.smali         |  92 ++++
+ .../UnicaSettingsPreferenceController.smali   | 223 ++++++++++
+ .../PIFUtils$$ExternalSyntheticLambda0.smali  |  46 ++
+ .../PIFUtils$$ExternalSyntheticLambda1.smali  |  34 ++
+ .../PIFUtils$$ExternalSyntheticLambda2.smali  |  46 ++
+ .../io/mesalabs/unica/pif/PIFUtils.smali      | 408 ++++++++++++++++++
+ .../AppDowngradePreferenceController.smali    | 183 ++++++++
+ .../DeviceNamePreferenceController.smali      | 211 +++++++++
+ .../GamesPropsPreferenceController.smali      | 167 +++++++
+ .../PIFVersionPreferenceController.smali      | 226 ++++++++++
+ .../ROMVersionPreferenceController.smali      | 238 ++++++++++
+ ...SecureScreenshotPreferenceController.smali | 183 ++++++++
+ 23 files changed, 2177 insertions(+)
  create mode 100644 res/drawable/sec_ic_settings_unica.xml
  create mode 100644 res/layout-night/unica_settings_logo_layout.xml
  create mode 100644 res/layout/unica_settings_logo_layout.xml
@@ -47,7 +47,7 @@ Subject: [PATCH] Add UN1CA Settings
  create mode 100644 smali_classes4/io/mesalabs/unica/settings/SecureScreenshotPreferenceController.smali
 
 diff --git a/AndroidManifest.xml b/AndroidManifest.xml
-index 737a4a65..e49f04be 100644
+index 737a4a657..e49f04be2 100644
 --- a/AndroidManifest.xml
 +++ b/AndroidManifest.xml
 @@ -5102,5 +5102,13 @@
@@ -67,7 +67,7 @@ index 737a4a65..e49f04be 100644
 \ No newline at end of file
 diff --git a/res/drawable/sec_ic_settings_unica.xml b/res/drawable/sec_ic_settings_unica.xml
 new file mode 100644
-index 00000000..0cd223e4
+index 000000000..0cd223e42
 --- /dev/null
 +++ b/res/drawable/sec_ic_settings_unica.xml
 @@ -0,0 +1,9 @@
@@ -83,7 +83,7 @@ index 00000000..0cd223e4
 \ No newline at end of file
 diff --git a/res/layout-night/unica_settings_logo_layout.xml b/res/layout-night/unica_settings_logo_layout.xml
 new file mode 100644
-index 00000000..b4ee07d3
+index 000000000..b4ee07d38
 --- /dev/null
 +++ b/res/layout-night/unica_settings_logo_layout.xml
 @@ -0,0 +1,6 @@
@@ -96,7 +96,7 @@ index 00000000..b4ee07d3
 \ No newline at end of file
 diff --git a/res/layout/unica_settings_logo_layout.xml b/res/layout/unica_settings_logo_layout.xml
 new file mode 100644
-index 00000000..7b802f76
+index 000000000..7b802f760
 --- /dev/null
 +++ b/res/layout/unica_settings_logo_layout.xml
 @@ -0,0 +1,6 @@
@@ -108,10 +108,10 @@ index 00000000..7b802f76
 +</FrameLayout>
 \ No newline at end of file
 diff --git a/res/values/public.xml b/res/values/public.xml
-index 23eb925b..6f775f89 100644
+index df754db21..65e98a95e 100644
 --- a/res/values/public.xml
 +++ b/res/values/public.xml
-@@ -11957,6 +11957,7 @@
+@@ -11955,6 +11955,7 @@
      <public type="drawable" name="wifi_friction" id="0x7f080b97" />
      <public type="drawable" name="wifi_signal" id="0x7f080b98" />
      <public type="drawable" name="work_challenge_emergency_button_background" id="0x7f080b99" />
@@ -119,7 +119,7 @@ index 23eb925b..6f775f89 100644
      <public type="drawable" name="$accessibility_shortcut_type_software_gesture__0" id="0x7f080016" />
      <public type="drawable" name="$accessibility_shortcut_type_software_gesture__1" id="0x7f080017" />
      <public type="drawable" name="$accessibility_shortcut_type_software_gesture_talkback__0" id="0x7f080018" />
-@@ -12586,6 +12587,8 @@
+@@ -12584,6 +12585,8 @@
      <public type="drawable" name="ws_ic_2step_02" id="0x7f080b9b" />
      <public type="drawable" name="ws_ic_knox_premium" id="0x7f080b9c" />
      <public type="drawable" name="ws_ic_system_lock" id="0x7f080b9d" />
@@ -128,7 +128,7 @@ index 23eb925b..6f775f89 100644
      <public type="fraction" name="battery_button_height_fraction" id="0x7f090000" />
      <public type="fraction" name="battery_subpixel_smoothing_left" id="0x7f090001" />
      <public type="fraction" name="battery_subpixel_smoothing_right" id="0x7f090002" />
-@@ -18437,6 +18440,7 @@
+@@ -18435,6 +18438,7 @@
      <public type="layout" name="zen_rule_type" id="0x7f0d0625" />
      <public type="layout" name="zen_rule_type_selection" id="0x7f0d0626" />
      <public type="layout" name="zen_schedule_rule_day" id="0x7f0d0627" />
@@ -136,7 +136,7 @@ index 23eb925b..6f775f89 100644
      <public type="layout" name="sud_glif_preference_template_card" id="0x7f0d0588" />
      <public type="layout" name="material_clock_period_toggle_land" id="0x7f0d014c" />
      <public type="layout" name="sec_bluetooth_function_settings_content_land" id="0x7f0d02a7" />
-@@ -31911,6 +31915,20 @@
+@@ -31909,6 +31913,20 @@
      <public type="string" name="zone_time_type_standard" id="0x7f13339b" />
      <public type="string" name="zzz_lgt_password_wrong_pin_code1" id="0x7f13339c" />
      <public type="string" name="zzz_lgt_password_wrong_pin_code2" id="0x7f13339d" />
@@ -157,7 +157,7 @@ index 23eb925b..6f775f89 100644
      <public type="style" name="Accessibility.Preference.A11ySeekBarPreference" id="0x7f140000" />
      <public type="style" name="Accessibility.Preference.A11ySeekBarWithButtonsPreference" id="0x7f140001" />
      <public type="style" name="Accessibility.Preference.SingleChoicePreference" id="0x7f140002" />
-@@ -34627,4 +34645,5 @@
+@@ -34625,4 +34643,5 @@
      <public type="xml" name="zen_mode_schedule_rule_settings" id="0x7f16026a" />
      <public type="xml" name="zen_mode_settings" id="0x7f16026b" />
      <public type="xml" name="zen_mode_sound_vibration_settings" id="0x7f16026c" />
@@ -165,7 +165,7 @@ index 23eb925b..6f775f89 100644
  </resources>
 \ No newline at end of file
 diff --git a/res/values/strings.xml b/res/values/strings.xml
-index 486d035b..464cce5e 100644
+index 486d035b8..464cce5e2 100644
 --- a/res/values/strings.xml
 +++ b/res/values/strings.xml
 @@ -13851,4 +13851,18 @@ In Camera, you can use the Top button to take pictures."</string>
@@ -188,7 +188,7 @@ index 486d035b..464cce5e 100644
 +    <string name="unica_settings_title">UN1CA Settings</string>
  </resources>
 diff --git a/res/xml/sec_top_level_settings.xml b/res/xml/sec_top_level_settings.xml
-index e79896f6..a16c39b5 100644
+index e79896f6c..a16c39b5b 100644
 --- a/res/xml/sec_top_level_settings.xml
 +++ b/res/xml/sec_top_level_settings.xml
 @@ -61,6 +61,7 @@
@@ -201,7 +201,7 @@ index e79896f6..a16c39b5 100644
          <intent android:targetPackage="@string/config_sec_toplevel_digitalwellbeing_package" android:targetClass="@string/config_sec_toplevel_digitalwellbeing_class">
 diff --git a/res/xml/unica_settings.xml b/res/xml/unica_settings.xml
 new file mode 100644
-index 00000000..0ec9259d
+index 000000000..0ec9259db
 --- /dev/null
 +++ b/res/xml/unica_settings.xml
 @@ -0,0 +1,14 @@
@@ -221,7 +221,7 @@ index 00000000..0ec9259d
 +</PreferenceScreen>
 \ No newline at end of file
 diff --git a/smali_classes2/com/android/settings/R$string.smali b/smali_classes2/com/android/settings/R$string.smali
-index 91fbf763..2baed6ef 100644
+index 91fbf7638..2baed6efb 100644
 --- a/smali_classes2/com/android/settings/R$string.smali
 +++ b/smali_classes2/com/android/settings/R$string.smali
 @@ -12519,3 +12519,31 @@
@@ -257,7 +257,7 @@ index 91fbf763..2baed6ef 100644
 +
 +.field public static final unica_settings_title:I = 0x7f1333b1
 diff --git a/smali_classes2/com/android/settings/R$xml.smali b/smali_classes2/com/android/settings/R$xml.smali
-index 4d5b41c4..44cfdfb4 100644
+index 4d5b41c45..44cfdfb49 100644
 --- a/smali_classes2/com/android/settings/R$xml.smali
 +++ b/smali_classes2/com/android/settings/R$xml.smali
 @@ -1063,3 +1063,5 @@
@@ -268,7 +268,7 @@ index 4d5b41c4..44cfdfb4 100644
 +.field public static final unica_settings:I = 0x7f16026d
 diff --git a/smali_classes4/com/android/settings/Settings$UnicaSettingsActivity.smali b/smali_classes4/com/android/settings/Settings$UnicaSettingsActivity.smali
 new file mode 100644
-index 00000000..18621dd0
+index 000000000..18621dd03
 --- /dev/null
 +++ b/smali_classes4/com/android/settings/Settings$UnicaSettingsActivity.smali
 @@ -0,0 +1,13 @@
@@ -287,7 +287,7 @@ index 00000000..18621dd0
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/UnicaSettingsFragment.smali b/smali_classes4/io/mesalabs/unica/UnicaSettingsFragment.smali
 new file mode 100644
-index 00000000..b8aef5f2
+index 000000000..b8aef5f2a
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/UnicaSettingsFragment.smali
 @@ -0,0 +1,92 @@
@@ -385,7 +385,7 @@ index 00000000..b8aef5f2
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/UnicaSettingsPreferenceController.smali b/smali_classes4/io/mesalabs/unica/UnicaSettingsPreferenceController.smali
 new file mode 100644
-index 00000000..00e24add
+index 000000000..00e24add1
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/UnicaSettingsPreferenceController.smali
 @@ -0,0 +1,223 @@
@@ -614,7 +614,7 @@ index 00000000..00e24add
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda0.smali b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda0.smali
 new file mode 100644
-index 00000000..1359aa12
+index 000000000..1359aa125
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda0.smali
 @@ -0,0 +1,46 @@
@@ -666,7 +666,7 @@ index 00000000..1359aa12
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda1.smali b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda1.smali
 new file mode 100644
-index 00000000..96dc69e3
+index 000000000..96dc69e36
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda1.smali
 @@ -0,0 +1,34 @@
@@ -706,7 +706,7 @@ index 00000000..96dc69e3
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda2.smali b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda2.smali
 new file mode 100644
-index 00000000..07ba1d77
+index 000000000..07ba1d771
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/pif/PIFUtils$$ExternalSyntheticLambda2.smali
 @@ -0,0 +1,46 @@
@@ -758,7 +758,7 @@ index 00000000..07ba1d77
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/pif/PIFUtils.smali b/smali_classes4/io/mesalabs/unica/pif/PIFUtils.smali
 new file mode 100644
-index 00000000..ea9491ab
+index 000000000..42a95bdc4
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/pif/PIFUtils.smali
 @@ -0,0 +1,408 @@
@@ -1172,7 +1172,7 @@ index 00000000..ea9491ab
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/AppDowngradePreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/AppDowngradePreferenceController.smali
 new file mode 100644
-index 00000000..079c6187
+index 000000000..079c61878
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/AppDowngradePreferenceController.smali
 @@ -0,0 +1,183 @@
@@ -1361,7 +1361,7 @@ index 00000000..079c6187
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/DeviceNamePreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/DeviceNamePreferenceController.smali
 new file mode 100644
-index 00000000..b5736042
+index 000000000..b57360429
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/DeviceNamePreferenceController.smali
 @@ -0,0 +1,211 @@
@@ -1578,7 +1578,7 @@ index 00000000..b5736042
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/GamesPropsPreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/GamesPropsPreferenceController.smali
 new file mode 100644
-index 00000000..66a58f0c
+index 000000000..66a58f0cd
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/GamesPropsPreferenceController.smali
 @@ -0,0 +1,167 @@
@@ -1751,7 +1751,7 @@ index 00000000..66a58f0c
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/PIFVersionPreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/PIFVersionPreferenceController.smali
 new file mode 100644
-index 00000000..c489b897
+index 000000000..c489b8974
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/PIFVersionPreferenceController.smali
 @@ -0,0 +1,226 @@
@@ -1983,7 +1983,7 @@ index 00000000..c489b897
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/ROMVersionPreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/ROMVersionPreferenceController.smali
 new file mode 100644
-index 00000000..691ca09e
+index 000000000..691ca09e0
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/ROMVersionPreferenceController.smali
 @@ -0,0 +1,238 @@
@@ -2227,7 +2227,7 @@ index 00000000..691ca09e
 +.end method
 diff --git a/smali_classes4/io/mesalabs/unica/settings/SecureScreenshotPreferenceController.smali b/smali_classes4/io/mesalabs/unica/settings/SecureScreenshotPreferenceController.smali
 new file mode 100644
-index 00000000..b3500e39
+index 000000000..b3500e39f
 --- /dev/null
 +++ b/smali_classes4/io/mesalabs/unica/settings/SecureScreenshotPreferenceController.smali
 @@ -0,0 +1,183 @@
