@@ -4,14 +4,14 @@ Date: Wed, 29 Nov 2023 01:04:19 +0100
 Subject: [PATCH] Replace source SPF with target values
 
 ---
- smali/com/android/providers/settings/DatabaseHelper.smali | 2 +-
+ .../smali/com/android/providers/settings/DatabaseHelper.smali   | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/smali/com/android/providers/settings/DatabaseHelper.smali b/smali/com/android/providers/settings/DatabaseHelper.smali
-index db5c78c..fcd826c 100644
+index 4d04240cb..b40e67c4e 100644
 --- a/smali/com/android/providers/settings/DatabaseHelper.smali
 +++ b/smali/com/android/providers/settings/DatabaseHelper.smali
-@@ -2571,7 +2571,7 @@
+@@ -2599,7 +2599,7 @@
  
      if-eqz v0, :cond_0
  
@@ -21,5 +21,5 @@ index db5c78c..fcd826c 100644
      goto :goto_0
  
 -- 
-2.43.0
+2.40.1
 
