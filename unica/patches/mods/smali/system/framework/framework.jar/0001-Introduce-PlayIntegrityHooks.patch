@@ -4,7 +4,7 @@ Date: Sun, 28 Jan 2024 01:48:48 +0100
 Subject: [PATCH] Introduce PlayIntegrityHooks
 
 ---
- smali/android/app/Instrumentation.smali       |    4 +
+ .../smali/android/app/Instrumentation.smali   |    4 +
  .../keystore2/AndroidKeyStoreSpi.smali        |    2 +
  ...grityHooks$$ExternalSyntheticLambda0.smali |   30 +
  .../mesalabs/unica/PlayIntegrityHooks$1.smali |   79 ++
@@ -37,10 +37,10 @@ index 86460ff3..a0f4bf02 100644
  .end method
  
 diff --git a/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali b/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
-index d3b5e17c..192a32c4 100644
+index f8640991..502e7662 100644
 --- a/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
 +++ b/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
-@@ -3837,6 +3837,8 @@
+@@ -3877,6 +3877,8 @@
  .method public whitelist test-api engineGetCertificateChain(Ljava/lang/String;)[Ljava/security/cert/Certificate;
      .locals 9
  
@@ -1329,5 +1329,5 @@ index 00000000..751874a5
 +    return-void
 +.end method
 -- 
-2.34.1
+2.40.1
 

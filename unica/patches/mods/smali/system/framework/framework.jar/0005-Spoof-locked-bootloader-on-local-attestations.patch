@@ -8,7 +8,7 @@ Subject: [PATCH] Spoof locked bootloader on local attestations
  1 file changed, 200 insertions(+), 42 deletions(-)
 
 diff --git a/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali b/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
-index 192a32c4..114f7106 100644
+index 502e7662..fc822856 100644
 --- a/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
 +++ b/smali_classes3/android/security/keystore2/AndroidKeyStoreSpi.smali
 @@ -567,6 +567,107 @@
@@ -119,7 +119,7 @@ index 192a32c4..114f7106 100644
  .method private blacklist isKeyEntry(Ljava/lang/String;)Z
      .locals 2
  
-@@ -3835,103 +3936,160 @@
+@@ -3875,103 +3976,160 @@
  .end method
  
  .method public whitelist test-api engineGetCertificateChain(Ljava/lang/String;)[Ljava/security/cert/Certificate;
@@ -323,5 +323,5 @@ index 192a32c4..114f7106 100644
  
  .method public whitelist test-api engineGetCreationDate(Ljava/lang/String;)Ljava/util/Date;
 -- 
-2.43.2
+2.40.1
 
