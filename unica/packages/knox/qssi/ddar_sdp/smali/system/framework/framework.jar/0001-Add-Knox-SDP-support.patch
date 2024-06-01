@@ -1,4 +1,4 @@
-From a83d423d990bda9b527f6cd2f2650203bbaeabc6 Mon Sep 17 00:00:00 2001
+From f773db5b30fcdaf4ec723b6eae7c25c88e657307 Mon Sep 17 00:00:00 2001
 From: BlackMesa123 <giangrecosalvo9@gmail.com>
 Date: Wed, 31 Jan 2024 08:26:00 +0100
 Subject: [PATCH] Add Knox SDP support
@@ -16,7 +16,7 @@ Subject: [PATCH] Add Knox SDP support
  create mode 100644 smali_classes5/com/android/internal/widget/LockPatternUtils$$ExternalSyntheticLambda0.smali
 
 diff --git a/smali/android/database/sqlite/SQLiteDatabase.smali b/smali/android/database/sqlite/SQLiteDatabase.smali
-index 2d3712a5..45806f48 100644
+index 2d3712a53..45806f483 100644
 --- a/smali/android/database/sqlite/SQLiteDatabase.smali
 +++ b/smali/android/database/sqlite/SQLiteDatabase.smali
 @@ -75,7 +75,7 @@
@@ -233,7 +233,7 @@ index 2d3712a5..45806f48 100644
  
  .method public whitelist setTransactionSuccessful()V
 diff --git a/smali/android/database/sqlite/SQLiteSdpHelper.smali b/smali/android/database/sqlite/SQLiteSdpHelper.smali
-index cb144558..b82a53c2 100644
+index cb1445588..b82a53c29 100644
 --- a/smali/android/database/sqlite/SQLiteSdpHelper.smali
 +++ b/smali/android/database/sqlite/SQLiteSdpHelper.smali
 @@ -6,7 +6,7 @@
@@ -349,7 +349,7 @@ index cb144558..b82a53c2 100644
  
 diff --git a/smali_classes5/com/android/internal/widget/LockPatternUtils$$ExternalSyntheticLambda0.smali b/smali_classes5/com/android/internal/widget/LockPatternUtils$$ExternalSyntheticLambda0.smali
 new file mode 100644
-index 00000000..89cd85c9
+index 000000000..89cd85c98
 --- /dev/null
 +++ b/smali_classes5/com/android/internal/widget/LockPatternUtils$$ExternalSyntheticLambda0.smali
 @@ -0,0 +1,38 @@
@@ -392,10 +392,10 @@ index 00000000..89cd85c9
 +    return-object p1
 +.end method
 diff --git a/smali_classes5/com/android/internal/widget/LockPatternUtils.smali b/smali_classes5/com/android/internal/widget/LockPatternUtils.smali
-index fe336f32..bb74816a 100644
+index 96f324b71..cf2119958 100644
 --- a/smali_classes5/com/android/internal/widget/LockPatternUtils.smali
 +++ b/smali_classes5/com/android/internal/widget/LockPatternUtils.smali
-@@ -1665,14 +1665,40 @@
+@@ -1671,14 +1671,40 @@
  .end method
  
  .method private blacklist isSdpSupportedSecureFolder(I)Z
@@ -440,7 +440,7 @@ index fe336f32..bb74816a 100644
  
      :try_start_0
 diff --git a/smali_classes5/com/android/internal/widget/VerifyCredentialResponse$1.smali b/smali_classes5/com/android/internal/widget/VerifyCredentialResponse$1.smali
-index 94616fef..d2bd12b4 100644
+index 94616fef1..d2bd12b4b 100644
 --- a/smali_classes5/com/android/internal/widget/VerifyCredentialResponse$1.smali
 +++ b/smali_classes5/com/android/internal/widget/VerifyCredentialResponse$1.smali
 @@ -38,41 +38,84 @@
@@ -545,7 +545,7 @@ index 94616fef..d2bd12b4 100644
  
  .method public bridge synthetic whitelist createFromParcel(Landroid/os/Parcel;)Ljava/lang/Object;
 diff --git a/smali_classes5/com/android/internal/widget/VerifyCredentialResponse.smali b/smali_classes5/com/android/internal/widget/VerifyCredentialResponse.smali
-index d5f8a503..2175e3ad 100644
+index d5f8a503b..2175e3ad4 100644
 --- a/smali_classes5/com/android/internal/widget/VerifyCredentialResponse.smali
 +++ b/smali_classes5/com/android/internal/widget/VerifyCredentialResponse.smali
 @@ -134,6 +134,14 @@
@@ -595,7 +595,7 @@ index d5f8a503..2175e3ad 100644
      return-void
  .end method
 diff --git a/smali_classes5/com/samsung/android/knox/dar/DarRune.smali b/smali_classes5/com/samsung/android/knox/dar/DarRune.smali
-index 39e7a822..1a9e1f13 100644
+index 39e7a822d..1a9e1f135 100644
 --- a/smali_classes5/com/samsung/android/knox/dar/DarRune.smali
 +++ b/smali_classes5/com/samsung/android/knox/dar/DarRune.smali
 @@ -10,7 +10,7 @@
@@ -608,10 +608,10 @@ index 39e7a822..1a9e1f13 100644
  .field public static final blacklist KNOX_SUPPORT_DAR_SDP_LOG:Z = true
  
 diff --git a/smali_classes5/com/samsung/android/rune/CoreRune.smali b/smali_classes5/com/samsung/android/rune/CoreRune.smali
-index 4870523e..0b5bffd9 100644
+index 3b6cfcec7..455b78d0a 100644
 --- a/smali_classes5/com/samsung/android/rune/CoreRune.smali
 +++ b/smali_classes5/com/samsung/android/rune/CoreRune.smali
-@@ -1232,7 +1232,7 @@
+@@ -1298,7 +1298,7 @@
  
  .field public static final blacklist KNOX_SUPPORT_DAR_DUAL_DO:Z = true
  
@@ -621,5 +621,5 @@ index 4870523e..0b5bffd9 100644
  .field public static final blacklist KNOX_SUPPORT_DUAL_APP:Z = true
  
 -- 
-2.43.0
+2.40.1
 
