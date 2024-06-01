@@ -10,10 +10,10 @@ Subject: [PATCH] Replace source SPF with target values
  ...emFingerprintManager$Characteristics.smali |  4 +--
  .../fingerprint/SemFingerprintManager.smali   |  2 +-
  .../camera/mic/SemMultiMicManager.smali       |  4 +--
- .../hardware/display/RefreshRateConfig.smali  | 30 ++++++++-----------
+ .../hardware/display/RefreshRateConfig.smali  | 28 ++++++++-----------
  .../com/samsung/android/rune/CoreRune.smali   |  2 +-
- .../samsung/android/vibrator/VibRune.smali    | 22 +++++++-------
- 9 files changed, 37 insertions(+), 39 deletions(-)
+ .../samsung/android/vibrator/VibRune.smali    | 22 +++++++--------
+ 9 files changed, 36 insertions(+), 38 deletions(-)
 
 diff --git a/smali_classes2/android/hardware/fingerprint/FingerprintManager.smali b/smali_classes2/android/hardware/fingerprint/FingerprintManager.smali
 index 785b230be..84f47ff35 100644
@@ -126,7 +126,7 @@ index 20c36fffe..1445a3ab3 100644
      invoke-static {v2}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
  
 diff --git a/smali_classes5/com/samsung/android/hardware/display/RefreshRateConfig.smali b/smali_classes5/com/samsung/android/hardware/display/RefreshRateConfig.smali
-index e8a85d799..bc118087a 100644
+index e8a85d799..799fa2601 100644
 --- a/smali_classes5/com/samsung/android/hardware/display/RefreshRateConfig.smali
 +++ b/smali_classes5/com/samsung/android/hardware/display/RefreshRateConfig.smali
 @@ -431,7 +431,7 @@
@@ -201,8 +201,7 @@ index e8a85d799..bc118087a 100644
 -    invoke-direct {v0, v4, v5, v2, v3}, Lcom/samsung/android/hardware/display/RefreshRateConfig$BrightnessThreshold;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 +    const-string v1, "1"
  
--    const-string v2, "2"
-+    const-string v2, "120,60"
+     const-string v2, "2"
  
 -    const-string v3, "24,10,30,48,60,96,120"
 +    const-string v3, "60"
